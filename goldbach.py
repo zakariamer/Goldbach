@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import time
 
 # Set range of numbers to check
-max = 1000
+max = 10_000
 
 count_array = []
 
@@ -23,7 +23,7 @@ def is_prime(n):
 start = time.perf_counter() # Time the calculation
 for even in range(2, max + 1, 2):
     count = 0
-    for i in range(2, even):
+    for i in range(2, even // 2 + 1):
         if is_prime(i) and is_prime(even - i):
             count += 1
     count_array.append(count)
@@ -38,7 +38,7 @@ with open("Goldbach_Landscape_Results.txt", "w") as file:
         count = count_array[(even // 2) - 1]
         file.write(f"{even}: {count} pairs")
         file.write("\n")
-        for i in range(2, even):
+        for i in range(2, even // 2 + 1):
             if is_prime(i) and is_prime(even - i):
                 file.write(f"  {i} + {even - i}\n")
         file.write("\n")
