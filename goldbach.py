@@ -10,15 +10,15 @@ count_array = []
 
 # Checks to see if a number is prime
 def is_prime(n):
-    """Check if a number is prime."""
     if n <= 1:
         return False
+    # Check up to sqrt(n) since that's the biggest one factor can be
     for i in range(2, int(math.sqrt(n)) + 1):
         if n % i == 0:
             return False
     return True
 
-# Loops through all even numbers from 2 to max and finds all possible pairs of prime numbers that sum to that even number and increases the count of pairs for that even number
+# Loop through all even numbers from 2 to max and finds all possible pairs of prime numbers that sum to that even number and increases the count of pairs for that even number
 for even in range(2, max + 1, 2):
     count = 0
     for i in range(2, even):
