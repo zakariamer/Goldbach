@@ -26,13 +26,18 @@ for even in range(2, max + 1, 2):
             count += 1
     count_array.append(count)
 
-# Print the even number and the count of pairs of prime numbers that sum to that even number and prints the actual pairs
-for even in range(2, max + 1, 2):
-    count = count_array[(even // 2) - 1]
-    print(f"{even}: {count} pairs")
-    for i in range(2, even):
-        if is_prime(i) and is_prime(even - i):
-            print(f"  {i} + {even - i}")
+# Write the even number, the count of prime pairs that sum to it, and then list all pairs
+with open("Goldbach_Landscape_Results.txt", "w") as file:
+    for even in range(2, max + 1, 2):
+        count = count_array[(even // 2) - 1]
+        file.write(f"{even}: {count} pairs")
+        file.write("\n")
+        for i in range(2, even):
+            if is_prime(i) and is_prime(even - i):
+                file.write(f"  {i} + {even - i}\n")
+        file.write("\n")
+
+print("Goldbach_Landscape_Results.txt file created.")
 
 # Graph the results using matplotlib bar graph and shows all even numbers labelled on the x-axis and the count of pairs of prime numbers that sum to that even number on the y-axis
 plt.bar([i for i in range(2, max + 1, 2)], count_array)
