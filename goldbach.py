@@ -2,6 +2,7 @@
 
 import math
 import matplotlib.pyplot as plt
+import time
 
 # Set range of numbers to check
 max = 1000
@@ -19,12 +20,17 @@ def is_prime(n):
     return True
 
 # Loop through all even numbers from 2 to max and finds all possible pairs of prime numbers that sum to that even number and increases the count of pairs for that even number
+start = time.perf_counter() # Time the calculation
 for even in range(2, max + 1, 2):
     count = 0
     for i in range(2, even):
         if is_prime(i) and is_prime(even - i):
             count += 1
     count_array.append(count)
+
+# Print time taken
+elapsed = time.perf_counter() - start
+print(f"Completed in {elapsed} seconds.")
 
 # Write the even number, the count of prime pairs that sum to it, and then list all pairs
 with open("Goldbach_Landscape_Results.txt", "w") as file:
